@@ -1,0 +1,5 @@
+# Statyczny landing serwowany przez Cloudflare Pages (bez-build, serwowanie z root).
+# Lokalne cache / artefakty — nie commitować.
+.wrangler/
+node_modules/
+.DS_Store

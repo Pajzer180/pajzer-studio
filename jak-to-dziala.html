@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jak to działa — Zakładka</title>
+    <meta name="description" content="Od pytania do książki w trzech krokach. Stukasz w gotowe odpowiedzi, Zakładka dopytuje coraz celniej i na końcu poleca jedną książkę — tę właściwą dla Ciebie." />
+    <meta name="theme-color" content="#0A1330" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Jak to działa — Zakładka" />
+    <meta property="og:description" content="Od pytania do książki w trzech krokach." />
+    <meta property="og:locale" content="pl_PL" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=2" />
+  </head>
+  <body>
+    <div class="zk-root">
+      <!-- NAV -->
+      <nav class="zk-nav">
+        <a class="zk-brand" href="index.html">
+          <img class="zk-brand-logo" src="logo-zakladka-mark.png" width="30" height="30" alt="Zakładka" />
+          <span>Zakładka</span>
+        </a>
+        <div class="zk-nav-links">
+          <a class="zk-nav-link" href="korzysci.html">Korzyści</a>
+          <a class="zk-nav-link zk-nav-link--active" href="jak-to-dziala.html">Jak to działa</a>
+          <a class="zk-beta-pill" href="beta.html">Pobierz</a>
+        </div>
+      </nav>
+
+      <!-- CONTENT -->
+      <main class="zk-main zk-main--jak">
+        <div class="zk-intro zk-rise">
+          <div class="zk-eyebrow">Jak to działa</div>
+          <h1 class="zk-h1">Od pytania do książki<br />w trzech krokach</h1>
+          <p class="zk-sub">Bez przewijania setek tytułów. Stukasz w gotowe odpowiedzi, Zakładka dopytuje coraz celniej i na końcu poleca jedną książkę — tę właściwą dla Ciebie.</p>
+        </div>
+
+        <div class="zk-jak-grid">
+          <!-- kroki -->
+          <div class="zk-steps zk-rise" style="animation-delay:.06s;">
+            <div class="zk-step">
+              <div class="zk-step-rail">
+                <div class="zk-step-num">1</div>
+                <div class="zk-step-line"></div>
+              </div>
+              <div class="zk-step-body">
+                <h3>Odpowiadasz na kilka pytań</h3>
+                <p>Stukasz w gotowe odpowiedzi — o nastrój, klimat, gatunek i to, na co masz dziś ochotę. Żadnego pisania ani formularzy.</p>
+              </div>
+            </div>
+            <div class="zk-step">
+              <div class="zk-step-rail">
+                <div class="zk-step-num">2</div>
+                <div class="zk-step-line"></div>
+              </div>
+              <div class="zk-step-body">
+                <h3>Zakładka dopytuje coraz celniej</h3>
+                <p>Każde kolejne pytanie zależy od poprzedniej odpowiedzi i zawęża krąg — jak w grze w Akinatora, tylko o książkach.</p>
+              </div>
+            </div>
+            <div class="zk-step">
+              <div class="zk-step-rail">
+                <div class="zk-step-num zk-step-num--final">3</div>
+              </div>
+              <div class="zk-step-body">
+                <h3>Dostajesz jedną dopasowaną książkę</h3>
+                <p>Z okładką i oceną, uzasadnieniem „dlaczego dla Ciebie” i „co Ci to da” — oraz linkiem, gdzie ją przeczytać.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- podgląd quizu -->
+          <div class="zk-quiz-wrap">
+            <div class="zk-quiz-card">
+              <div class="zk-quiz-head">
+                <img class="zk-quiz-logo" src="logo-zakladka-mark.png" width="18" height="18" alt="" />
+                <span class="zk-quiz-name">Zakładka</span>
+                <span class="zk-quiz-tag">Podgląd quizu</span>
+              </div>
+              <div class="zk-quiz-progress"><i></i></div>
+              <div class="zk-quiz-eyebrow">Na początek</div>
+              <h3 class="zk-quiz-q">Na co masz dziś ochotę?</h3>
+              <div class="zk-quiz-opts">
+                <div class="zk-opt zk-opt--on">
+                  <div class="zk-opt-main">
+                    <div class="zk-opt-title">Wciągająca fabuła</div>
+                    <div class="zk-opt-sub">Powieść, która porwie</div>
+                  </div>
+                  <div class="zk-opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#04121a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg></div>
+                </div>
+                <div class="zk-opt">
+                  <div class="zk-opt-title">Coś prawdziwego</div>
+                  <div class="zk-opt-sub">Reportaż, biografia, fakty</div>
+                </div>
+                <div class="zk-opt">
+                  <div class="zk-opt-title">Rozwój i zrozumienie</div>
+                  <div class="zk-opt-sub">Lepiej zrozumieć siebie i świat</div>
+                </div>
+                <div class="zk-opt">
+                  <div class="zk-opt-title">Lekko i przyjemnie</div>
+                  <div class="zk-opt-sub">Odprężenie bez wysiłku</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- skrót karty książki -->
+            <div class="zk-result">
+              <div class="zk-result-cover"></div>
+              <div class="zk-result-body">
+                <div class="zk-result-label">Mam dla Ciebie książkę</div>
+                <div class="zk-result-meta">
+                  <span class="zk-stars"><span class="zk-stars-full">★★★★</span><span class="zk-stars-empty">★</span></span>
+                  <span class="zk-result-metatext">Okładka · ocena · gdzie przeczytać</span>
+                </div>
+                <div class="zk-chips">
+                  <span class="zk-chip zk-chip--accent">Dlaczego dla Ciebie</span>
+                  <span class="zk-chip zk-chip--plain">Co Ci to da</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="zk-footer">
+        <a class="zk-footer-brand" href="index.html">
+          <img class="zk-footer-logo" src="logo-zakladka-mark.png" width="24" height="24" alt="" />
+          <span>Zakładka</span>
+        </a>
+        <span class="zk-footer-copy">© 2026 Pajzer Studio · Wszystkie prawa zastrzeżone</span>
+      </footer>
+    </div>
+  </body>
+</html>

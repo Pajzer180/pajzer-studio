@@ -1,14 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Pajzer Studio – projektujemy strony firmowe od struktury oferty po przygotowanie pod SEO. Budowa stron, przebudowa i optymalizacja dla małych firm i firm B2B." />
-    <title>Pajzer Studio – Strony firmowe dla małych firm i B2B</title>
+    <title>Zakładka — Twój osobisty doradca książkowy</title>
+    <meta name="description" content="Zakładka to rozmawiający doradca książkowy po polsku. Odpowiadasz na kilka pytań, a ona dopytuje coraz celniej — aż poleci Ci jedną książkę dopasowaną tylko do Ciebie. Wkrótce w Google Play." />
+    <meta name="theme-color" content="#0A1330" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zakładka — Twój osobisty doradca książkowy" />
+    <meta property="og:description" content="Kilka pytań. Jedna idealna książka." />
+    <meta property="og:locale" content="pl_PL" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=2" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div class="zk-root zk-root--landing">
+      <!-- NAV -->
+      <nav class="zk-nav">
+        <a class="zk-brand" href="index.html">
+          <img class="zk-brand-logo" src="logo-zakladka-mark.png" width="30" height="30" alt="Zakładka" />
+          <span>Zakładka</span>
+        </a>
+        <div class="zk-nav-links">
+          <a class="zk-nav-link" href="korzysci.html">Korzyści</a>
+          <a class="zk-nav-link" href="jak-to-dziala.html">Jak to działa</a>
+          <a class="zk-beta-pill" href="beta.html">Pobierz</a>
+        </div>
+      </nav>
+
+      <!-- HERO -->
+      <main class="zk-hero">
+        <div class="zk-badge zk-rise-6" style="margin-bottom:30px;">
+          <span class="zk-badge-dot"></span>
+          <span>Wkrótce w Google Play</span>
+        </div>
+        <h1 class="zk-rise-6" style="animation-delay:.06s;">Kilka pytań.<br /><span class="zk-shimmer">Jedna idealna książka.</span></h1>
+        <p class="zk-hero-lead zk-rise-6" style="animation-delay:.12s;">Zakładka to rozmawiający doradca książkowy po polsku. Odpowiadasz na kilka pytań, a ona dopytuje coraz celniej — aż poleci Ci jedną książkę dopasowaną tylko do Ciebie.</p>
+        <div class="zk-cta-row zk-rise-6" style="animation-delay:.18s;">
+          <a class="zk-cta" href="beta.html">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#04121a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12" /><path d="m7 11 5 5 5-5" /><path d="M5 21h14" /></svg>
+            Pobierz aplikację
+          </a>
+          <a class="zk-ghost" href="jak-to-dziala.html">Jak to działa →</a>
+        </div>
+        <div class="zk-ticks zk-rise-6" style="animation-delay:.24s;">
+          <span class="zk-tick"><b>✓</b> Po polsku</span>
+          <span class="zk-tick"><b>✓</b> Prawdziwe tytuły i okładki</span>
+          <span class="zk-tick"><b>✓</b> Uczy się Twojego gustu</span>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="zk-footer">
+        <a class="zk-footer-brand" href="index.html">
+          <img class="zk-footer-logo" src="logo-zakladka-mark.png" width="24" height="24" alt="" />
+          <span>Zakładka</span>
+        </a>
+        <span class="zk-footer-copy">© 2026 Pajzer Studio · Wszystkie prawa zastrzeżone</span>
+      </footer>
+    </div>
   </body>
 </html>

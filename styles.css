@@ -1,0 +1,661 @@
+/* ==========================================================================
+   Zakładka — system designu (statyczny, zero build-stepu)
+   Źródło: handoff z Claude Design. Font: Inter. Granat #0A1330 / akcent #33C3D0.
+   ========================================================================== */
+
+:root {
+  --accent: #33C3D0;
+  --accent-bright: #5FE0EA;
+  --navy: #0E1A40;
+  --navy-deep: #0A1330;
+  --ink: #E8F0FF;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--navy-deep);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { text-decoration: none; }
+
+/* ---- Animacje ---- */
+@keyframes zk-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(51, 195, 208, 0.5); }
+  70%      { box-shadow: 0 0 0 9px rgba(51, 195, 208, 0); }
+}
+@keyframes zk-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes zk-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes zk-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.zk-rise   { animation: zk-rise .55s cubic-bezier(.4, 0, .2, 1) both; }
+.zk-rise-6 { animation: zk-rise .6s cubic-bezier(.4, 0, .2, 1) both; }
+
+/* ---- Powłoka strony ---- */
+.zk-root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgba(51, 195, 208, 0.14), transparent 55%),
+    linear-gradient(180deg, var(--navy-deep), var(--navy) 65%);
+}
+.zk-root--landing {
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(51, 195, 208, 0.18), transparent 55%),
+    linear-gradient(180deg, var(--navy-deep), var(--navy) 65%);
+}
+.zk-root--beta {
+  background:
+    radial-gradient(120% 70% at 50% -8%, rgba(51, 195, 208, 0.18), transparent 55%),
+    linear-gradient(180deg, var(--navy-deep), var(--navy) 65%);
+}
+
+/* ---- Nawigacja ---- */
+.zk-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 18px clamp(20px, 5vw, 56px);
+  border-bottom: 1px solid rgba(120, 150, 210, 0.10);
+  background: rgba(10, 19, 48, 0.72);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+.zk-brand { display: flex; align-items: center; gap: 11px; }
+.zk-brand span {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #F2F7FF;
+}
+.zk-brand-logo { width: 30px; height: 30px; border-radius: 8px; display: block; }
+.zk-nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 30px);
+  flex-wrap: wrap;
+}
+.zk-nav-link {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #A9BBDE;
+  transition: color .2s;
+}
+.zk-nav-link:hover { color: #fff; }
+.zk-nav-link--active {
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* Beta-pill w nawigacji */
+.zk-beta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+  color: #04121a;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 6px 20px rgba(51, 195, 208, 0.30);
+  transition: transform .2s cubic-bezier(.4, 0, .2, 1), box-shadow .2s;
+}
+.zk-beta-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(51, 195, 208, 0.48);
+}
+.zk-beta-pill--active {
+  box-shadow: 0 6px 20px rgba(51, 195, 208, 0.42);
+}
+.zk-beta-pill--active:hover { transform: none; box-shadow: 0 6px 20px rgba(51, 195, 208, 0.42); }
+
+/* ---- Stopka ---- */
+.zk-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 24px clamp(20px, 5vw, 56px);
+  border-top: 1px solid rgba(120, 150, 210, 0.10);
+}
+.zk-footer-brand { display: flex; align-items: center; gap: 10px; }
+.zk-footer-brand span { font-size: 15px; font-weight: 700; color: var(--ink); }
+.zk-footer-logo { width: 24px; height: 24px; border-radius: 6px; display: block; }
+.zk-footer-copy { font-size: 13px; color: #7184A8; }
+
+/* ---- Main / sekcje ---- */
+.zk-main {
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(48px, 7vw, 88px) clamp(20px, 5vw, 40px) clamp(40px, 6vw, 72px);
+}
+.zk-main--jak      { max-width: 1080px; }
+.zk-main--korzysci { max-width: 1040px; }
+.zk-main--beta     { max-width: 880px; }
+
+.zk-intro {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto clamp(44px, 6vw, 60px);
+}
+.zk-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 14px;
+}
+.zk-h1 {
+  margin: 0;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: #F2F7FF;
+}
+.zk-sub {
+  max-width: 520px;
+  margin: 20px auto 0;
+  font-size: clamp(15px, 1.8vw, 17px);
+  line-height: 1.62;
+  color: #A9BBDE;
+}
+
+/* ---- Badge „Wkrótce w Google Play" ---- */
+.zk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  border-radius: 100px;
+  background: rgba(51, 195, 208, 0.10);
+  border: 1px solid rgba(51, 195, 208, 0.26);
+}
+.zk-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: zk-dot 2.4s ease-out infinite;
+}
+.zk-badge span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+}
+
+/* ---- Przyciski ---- */
+.zk-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+  color: #04121a;
+  font-weight: 700;
+  font-size: 15.5px;
+  letter-spacing: -0.01em;
+  box-shadow: 0 12px 38px rgba(51, 195, 208, 0.40);
+  transition: transform .2s cubic-bezier(.4, 0, .2, 1), box-shadow .2s;
+}
+.zk-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 52px rgba(51, 195, 208, 0.58);
+}
+.zk-cta--lg { gap: 11px; padding: 16px 30px; font-size: 16px; letter-spacing: normal; }
+
+.zk-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 26px;
+  border-radius: 16px;
+  border: 1px solid rgba(120, 150, 210, 0.28);
+  color: #D5E2FB;
+  font-weight: 600;
+  font-size: 15px;
+  transition: border-color .2s, transform .2s;
+}
+.zk-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+/* ==========================================================================
+   Landing (index.html)
+   ========================================================================== */
+.zk-hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(48px, 8vw, 104px) clamp(20px, 5vw, 40px);
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+}
+.zk-hero h1 {
+  margin: 0;
+  font-weight: 900;
+  font-size: clamp(40px, 6.8vw, 84px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: #F2F7FF;
+}
+.zk-shimmer {
+  background: linear-gradient(110deg, #ffffff 0%, var(--accent-bright) 42%, var(--accent) 70%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: zk-shimmer 6s linear infinite;
+}
+.zk-hero-lead {
+  max-width: 660px;
+  margin: 28px auto 0;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.62;
+  color: #A9BBDE;
+}
+.zk-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  justify-content: center;
+  margin-top: 36px;
+}
+.zk-ticks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  justify-content: center;
+  margin-top: 34px;
+}
+.zk-tick { font-size: 13.5px; color: #8295BC; }
+.zk-tick b { color: var(--accent-bright); font-weight: 700; }
+
+/* ==========================================================================
+   Jak to działa (jak-to-dziala.html)
+   ========================================================================== */
+.zk-jak-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(28px, 4vw, 52px);
+  align-items: center;
+}
+
+/* timeline kroków */
+.zk-steps { display: flex; flex-direction: column; gap: 0; }
+.zk-step { display: flex; gap: 20px; padding-bottom: 30px; }
+.zk-step:last-child { padding-bottom: 0; }
+.zk-step-rail { display: flex; flex-direction: column; align-items: center; }
+.zk-step-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(51, 195, 208, 0.12);
+  border: 1px solid rgba(51, 195, 208, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--accent-bright);
+  flex-shrink: 0;
+}
+.zk-step-num--final {
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+  border: none;
+  color: #04121a;
+}
+.zk-step-line {
+  width: 1px;
+  flex: 1;
+  background: rgba(120, 150, 210, 0.18);
+  margin-top: 6px;
+}
+.zk-step-body { padding-top: 8px; }
+.zk-step-body h3 { margin: 0 0 7px; font-size: 18px; font-weight: 800; color: #F2F7FF; }
+.zk-step-body p { margin: 0; font-size: 14.5px; line-height: 1.6; color: #9AAECF; }
+
+/* podgląd quizu */
+.zk-quiz-wrap {
+  animation: zk-bob 6s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.zk-quiz-card {
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(120, 150, 210, 0.16);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+.zk-quiz-head { display: flex; align-items: center; gap: 9px; margin-bottom: 16px; }
+.zk-quiz-name { font-size: 13px; font-weight: 600; color: #C7D4F0; }
+.zk-quiz-logo { width: 18px; height: 18px; border-radius: 5px; display: block; }
+.zk-quiz-tag {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6B7DA0;
+}
+.zk-quiz-progress {
+  height: 5px;
+  border-radius: 100px;
+  background: rgba(120, 150, 210, 0.16);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.zk-quiz-progress i {
+  display: block;
+  width: 34%;
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+}
+.zk-quiz-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 8px;
+}
+.zk-quiz-q {
+  margin: 0 0 16px;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #F2F7FF;
+}
+.zk-quiz-opts { display: flex; flex-direction: column; gap: 9px; }
+.zk-opt {
+  padding: 13px 15px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid rgba(120, 150, 210, 0.14);
+}
+.zk-opt-title { font-size: 14.5px; font-weight: 700; color: #E4ECFB; }
+.zk-opt-sub { font-size: 12.5px; color: #8FA3C7; margin-top: 2px; }
+.zk-opt--on {
+  background: rgba(51, 195, 208, 0.12);
+  border: 1.5px solid rgba(51, 195, 208, 0.55);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.zk-opt--on .zk-opt-main { flex: 1; }
+.zk-opt--on .zk-opt-title { color: #F2F7FF; }
+.zk-opt--on .zk-opt-sub { color: #9AAECF; }
+.zk-opt-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* karta wyniku */
+.zk-result {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(51, 195, 208, 0.16), rgba(51, 195, 208, 0.04));
+  border: 1px solid rgba(51, 195, 208, 0.30);
+}
+.zk-result-cover {
+  width: 48px;
+  height: 66px;
+  border-radius: 6px;
+  background: linear-gradient(160deg, #1c2f63, #0c1838);
+  border: 1px solid rgba(95, 224, 234, 0.35);
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+.zk-result-body { min-width: 0; }
+.zk-result-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: 5px;
+}
+.zk-result-meta { display: flex; gap: 9px; align-items: baseline; flex-wrap: wrap; }
+.zk-stars { font-size: 11px; color: #9AAECF; }
+.zk-stars-full { color: #FFC861; }
+.zk-stars-empty { color: #46587C; }
+.zk-result-metatext { font-size: 11.5px; color: #9AAECF; }
+.zk-chips { display: flex; gap: 7px; margin-top: 9px; flex-wrap: wrap; }
+.zk-chip { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 100px; }
+.zk-chip--accent { background: rgba(95, 224, 234, 0.14); color: var(--accent-bright); }
+.zk-chip--plain { background: rgba(255, 255, 255, 0.06); color: #C7D4F0; }
+
+/* ==========================================================================
+   Korzyści (korzysci.html)
+   ========================================================================== */
+.zk-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.zk-benefit {
+  padding: 30px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(120, 150, 210, 0.12);
+  transition: transform .25s cubic-bezier(.4, 0, .2, 1), border-color .25s;
+}
+.zk-benefit:hover { transform: translateY(-5px); border-color: rgba(51, 195, 208, 0.45); }
+.zk-benefit-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 13px;
+  background: rgba(51, 195, 208, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.zk-benefit h3 {
+  margin: 0 0 9px;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #F2F7FF;
+}
+.zk-benefit p { margin: 0; font-size: 14.5px; line-height: 1.62; color: #9AAECF; }
+
+/* ==========================================================================
+   Pobierz / spis wersji (beta.html)
+   ========================================================================== */
+/* karta najnowszej wersji — wyróżniona */
+.zk-dl-latest {
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 34px);
+  background: linear-gradient(135deg, rgba(51, 195, 208, 0.13), rgba(51, 195, 208, 0.03));
+  border: 1px solid rgba(51, 195, 208, 0.30);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.32);
+}
+.zk-dl-app {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.zk-dl-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 15px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid rgba(120, 150, 210, 0.18);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.38);
+}
+.zk-dl-icon img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.zk-dl-app-id { min-width: 0; }
+.zk-dl-ver-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+  flex-wrap: wrap;
+}
+.zk-dl-ver {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #F2F7FF;
+}
+.zk-dl-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+  color: #04121a;
+}
+.zk-dl-meta {
+  font-size: 13px;
+  color: #8FA3C7;
+}
+.zk-dl-changes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.zk-dl-changes li {
+  display: flex;
+  gap: 9px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #C7D4F0;
+}
+.zk-dl-changes li span { color: var(--accent-bright); flex-shrink: 0; }
+
+/* przyciski pobierania */
+.zk-dl-get {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 26px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent-bright), var(--accent));
+  color: #04121a;
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
+  box-shadow: 0 12px 38px rgba(51, 195, 208, 0.40);
+  transition: transform .2s cubic-bezier(.4, 0, .2, 1), box-shadow .2s;
+}
+.zk-dl-get:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 52px rgba(51, 195, 208, 0.58);
+}
+.zk-dl-get--block {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 17px 26px;
+  font-size: 16px;
+}
+.zk-dl-get--ghost {
+  padding: 11px 18px;
+  border-radius: 13px;
+  border: 1px solid rgba(120, 150, 210, 0.28);
+  background: transparent;
+  color: #D5E2FB;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: none;
+  transition: border-color .2s, transform .2s, background .2s;
+}
+.zk-dl-get--ghost:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  background: rgba(51, 195, 208, 0.06);
+  box-shadow: none;
+}
+
+/* starsze wersje */
+.zk-dl-older { margin-top: clamp(28px, 4vw, 38px); }
+.zk-dl-older-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6B7DA0;
+  margin-bottom: 16px;
+  padding-left: 4px;
+}
+.zk-dl-list { display: flex; flex-direction: column; gap: 12px; }
+.zk-dl-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(120, 150, 210, 0.12);
+}
+.zk-dl-row-info { min-width: 220px; flex: 1; }
+.zk-dl-row-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.zk-dl-row-ver { font-size: 17px; font-weight: 800; color: #F2F7FF; }
+.zk-dl-row-when { font-size: 12.5px; color: #8FA3C7; }
+.zk-dl-row-desc { font-size: 13.5px; line-height: 1.5; color: #9AAECF; margin-top: 6px; }
+
+.zk-dl-foot {
+  margin: 22px 4px 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #6B7DA0;
+}
+
+/* ---- Dostępność ---- */
+@media (prefers-reduced-motion: reduce) {
+  .zk-rise, .zk-rise-6, .zk-quiz-wrap, .zk-badge-dot, .zk-shimmer { animation: none !important; }
+}
